@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pawa Admin Panel</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body class="dashboard-body">
+    <header class="admin-header">
+      <div class="logo">
+        <img src="../assets/logo.svg" alt="Pawa" />
+      </div>
+      <button id="logoutBtn" class="btn btn--secondary">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </header>
+
+    <aside id="sidebar" class="sidebar">
+      <nav>
+        <ul>
+          <li>
+            <a href="#add-items" class="active"
+              ><i class="fas fa-plus-circle"></i> Add Items</a
+            >
+          </li>
+          <li>
+            <a href="#list-items"><i class="fas fa-list"></i> List Items</a>
+          </li>
+          <li>
+            <a href="#orders"><i class="fas fa-box"></i> Orders</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div id="loadingIndicator" class="loading-indicator">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+      </div>
+
+      <section id="add-items" class="page active">
+        <h2>Add New Product</h2>
+        <form id="addProductForm" class="form-grid">
+          <div class="form-group">
+            <label for="productImage">Product Image</label>
+            <input
+              type="file"
+              id="productImage"
+              accept="image/*"
+              required
+              data-product="image"
+            />
+          </div>
+          <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input
+              type="text"
+              id="productName"
+              placeholder="e.g. Wireless Earbuds"
+              required
+              data-product="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="productDescription">Description</label>
+            <textarea
+              id="productDescription"
+              placeholder="Short description..."
+              data-product="description"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label>Rich Description</label>
+            <div id="rich-editor" class="rich-editor"></div>
+          </div>
+          <div class="form-group">
+            <label for="productTags">Keywords (Tags)</label>
+            <input
+              type="text"
+              id="productTags"
+              placeholder="Enter keywords, press Enter"
+              class="tag-input"
+            />
+            <div class="tags-container"></div>
+          </div>
+          <div class="form-group">
+            <label for="productBrand">Brand</label>
+            <input
+              type="text"
+              id="productBrand"
+              placeholder="e.g. PawaTech"
+              data-product="brand"
+            />
+          </div>
+          <div class="form-group">
+            <label for="productPrice">Price (KES)</label>
+            <input
+              type="number"
+              id="productPrice"
+              min="0"
+              step="0.01"
+              placeholder="1000.00"
+              data-product="price"
+            />
+          </div>
+          <div class="form-group">
+            <label for="productStock">Stock Quantity</label>
+            <input
+              type="number"
+              id="productStock"
+              min="0"
+              placeholder="50"
+              data-product="stock"
+            />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn--primary">Add Product</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="list-items" class="page">
+        <h2>Product List</h2>
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price (KES)</th>
+              <th>Inventory</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productListBody">
+            </tbody>
+        </table>
+      </section>
+
+      <section id="orders" class="page">
+        <h2>Orders</h2>
+        <div id="ordersList" class="orders-list">
+          </div>
+      </section>
+    </main>
+
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Edit Product</h3>
+        <form id="editProductForm">
+          <input type="hidden" id="editProductId" />
+          <input
+            type="text"
+            id="editProductName"
+            placeholder="Product Name"
+            required
+          />
+          <textarea
+            id="editProductDescription"
+            placeholder="Description"
+          ></textarea>
+          <input
+            type="number"
+            id="editProductPrice"
+            placeholder="Price"
+            required
+          />
+          <input
+            type="number"
+            id="editProductStock"
+            placeholder="Stock"
+            required
+          />
+          <button type="submit" class="btn btn--primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
