@@ -34,7 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  async function makeAuthenticatedRequest(url, method = "GET", body = null) {
+  async function makeAuthenticatedRequest(
+    url,
+    method = "GET",
+    body = null,
+    isFormData = false
+  ) {
     const token = localStorage.getItem("adminToken");
     if (!token) {
       alert("Session expired. Please log in again.");
@@ -43,13 +48,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const headers = {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     };
 
+    // Do NOT set Content-Type header manually for FormData
+    if (!isFormData) {
+      headers["Content-Type"] = "application/json";
+    }
+
     const config = { method, headers };
+
     if (body) {
-      config.body = JSON.stringify(body);
+      if (isFormData) {
+        config.body = body;
+      } else {
+        config.body = JSON.stringify(body);
+      }
     }
 
     try {
@@ -181,30 +195,58 @@ document.addEventListener("DOMContentLoaded", function () {
     if (addProductForm) {
       addProductForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const productData = {
-          name: document.getElementById("productName").value,
-          description: document.getElementById("productDescription").value,
-          rich_description: quill ? quill.root.innerHTML : null,
-          keywords: Array.from(tagsContainer.children).map(
-            (tag) => tag.textContent.slice(0, -1) // remove the '×'
-          ),
-          brand: document.getElementById("productBrand").value,
-          price_cents: Math.round(
-            parseFloat(document.getElementById("productPrice").value) * 100
-          ),
-          stock_quantity: parseInt(
-            document.getElementById("productStock").value,
-            10
-          ),
-          // In a real app, you would handle file uploads and get the image URL
-          image: "https://via.placeholder.com/600x400.png?text=Product+Image",
-        };
 
+        // Create a new FormData object
+        const formData = new FormData();
+
+        // Append all form fields, including the file
+        formData.append("name", document.getElementById("productName").value);
+        formData.append(
+          "description",
+          document.getElementById("productDescription").value
+        );
+        formData.append(
+          "rich_description",
+          quill ? quill.root.innerHTML : null
+        );
+        formData.append("brand", document.getElementById("productBrand").value);
+        formData.append(
+          "price_cents",
+          Math.round(
+            parseFloat(document.getElementById("productPrice").value) * 100
+          )
+        );
+        formData.append(
+          "stock_quantity",
+          parseInt(document.getElementById("productStock").value, 10)
+        );
+        // Check if the is_featured checkbox is checked and append accordingly
+        const isFeatured = document.getElementById("isFeatured").checked;
+        formData.append("is_featured", isFeatured);
+
+        // Get the keywords from the tags container
+        const keywords = Array.from(tagsContainer.children).map((tag) =>
+          tag.textContent.slice(0, -1)
+        );
+        formData.append("keywords", JSON.stringify(keywords)); // Stringify array for transport
+
+        // **Append the image file from the input field**
+        const imageFile = document.getElementById("productImage").files[0];
+        if (imageFile) {
+          formData.append("image", imageFile);
+        } else {
+          alert("Please select a product image.");
+          return;
+        }
+
+        // Call the updated request function with FormData
         const response = await makeAuthenticatedRequest(
           `${API_BASE_URL}/products`,
           "POST",
-          productData
+          formData,
+          true // Pass a flag to indicate FormData is being used
         );
+
         if (response) {
           alert("Product added successfully!");
           addProductForm.reset();

@@ -1,0 +1,117 @@
+/* Add Product Form */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px; /* Increased gap for better spacing */
+  margin-top: 24px; /* Adjusted margin */
+  background: var(--bg-light); /* Added a background color */
+  padding: 30px; /* Added padding */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm); /* Added a subtle shadow */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px; /* Increased padding */
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background-color: var(--bg-soft);
+  color: var(--text-dark);
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.rich-editor {
+  min-height: 200px; /* Adjusted height for a larger editor */
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-soft);
+}
+
+.ql-toolbar.ql-snow {
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.ql-container.ql-snow {
+  border: 1px solid var(--border-color);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.tag-input {
+  margin-bottom: 8px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Increased gap */
+  margin-top: 8px;
+}
+
+.tags-container .tag {
+  background: var(--primary-color);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.tags-container .tag .remove {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.form-group button {
+  width: auto;
+  justify-self: start;
+}
+
+/* Responsive Styles for Add Product Form */
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .form-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Additional fix for grid layout issues */
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Let's make the rich editor take up more space on the grid */
+.form-group:has(.rich-editor) {
+  grid-column: 1 / -1;
+}

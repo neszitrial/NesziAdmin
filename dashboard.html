@@ -19,7 +19,7 @@
       <div class="logo">
         <img src="../assets/logo.svg" alt="Pawa" />
       </div>
-      <button id="logoutBtn" class="btn btn--secondary">
+      <button id="logoutBtn" class="btn btn--secondary" aria-label="Logout">
         <i class="fas fa-sign-out-alt"></i> Logout
       </button>
     </header>
@@ -28,15 +28,19 @@
       <nav>
         <ul>
           <li>
-            <a href="#add-items" class="active"
-              ><i class="fas fa-plus-circle"></i> Add Items</a
-            >
+            <a href="#add-items" class="active" aria-label="Add Items">
+              <i class="fas fa-plus-circle"></i> <span>Add Items</span>
+            </a>
           </li>
           <li>
-            <a href="#list-items"><i class="fas fa-list"></i> List Items</a>
+            <a href="#list-items" aria-label="List Items">
+              <i class="fas fa-list"></i> <span>List Items</span>
+            </a>
           </li>
           <li>
-            <a href="#orders"><i class="fas fa-box"></i> Orders</a>
+            <a href="#orders" aria-label="Orders">
+              <i class="fas fa-box"></i> <span>Orders</span>
+            </a>
           </li>
         </ul>
       </nav>
@@ -49,7 +53,7 @@
 
       <section id="add-items" class="page active">
         <h2>Add New Product</h2>
-        <form id="addProductForm" class="form-grid">
+        <form id="addProductForm" class="form-grid" action="#" method="post">
           <div class="form-group">
             <label for="productImage">Product Image</label>
             <input
@@ -102,6 +106,10 @@
             />
           </div>
           <div class="form-group">
+            <label for="isFeatured">Featured Product</label>
+            <input type="checkbox" id="isFeatured" data-product="is_featured" />
+          </div>
+          <div class="form-group">
             <label for="productPrice">Price (KES)</label>
             <input
               type="number"
@@ -141,14 +149,29 @@
             </tr>
           </thead>
           <tbody id="productListBody">
-            </tbody>
+            <tr>
+              <td data-label="Image">
+                <img src="path/to/image.jpg" alt="Product Image" />
+              </td>
+              <td data-label="Name">Product 1</td>
+              <td data-label="Price (KES)">100.00</td>
+              <td data-label="Inventory">50</td>
+              <td data-label="Actions">
+                <button class="action-btn edit-btn">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete-btn">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
       <section id="orders" class="page">
         <h2>Orders</h2>
-        <div id="ordersList" class="orders-list">
-          </div>
+        <div id="ordersList" class="orders-list"></div>
       </section>
     </main>
 
@@ -156,31 +179,45 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <h3>Edit Product</h3>
-        <form id="editProductForm">
+        <form id="editProductForm" class="form-grid">
           <input type="hidden" id="editProductId" />
-          <input
-            type="text"
-            id="editProductName"
-            placeholder="Product Name"
-            required
-          />
-          <textarea
-            id="editProductDescription"
-            placeholder="Description"
-          ></textarea>
-          <input
-            type="number"
-            id="editProductPrice"
-            placeholder="Price"
-            required
-          />
-          <input
-            type="number"
-            id="editProductStock"
-            placeholder="Stock"
-            required
-          />
-          <button type="submit" class="btn btn--primary">Save Changes</button>
+          <div class="form-group">
+            <label for="editProductName">Product Name</label>
+            <input
+              type="text"
+              id="editProductName"
+              placeholder="Product Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="editProductDescription">Description</label>
+            <textarea
+              id="editProductDescription"
+              placeholder="Description"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editProductPrice">Price</label>
+            <input
+              type="number"
+              id="editProductPrice"
+              placeholder="Price"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="editProductStock">Stock</label>
+            <input
+              type="number"
+              id="editProductStock"
+              placeholder="Stock"
+              required
+            />
+          </div>
+          <div class="form-group full-width">
+            <button type="submit" class="btn btn--primary">Save Changes</button>
+          </div>
         </form>
       </div>
     </div>

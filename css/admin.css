@@ -1,5 +1,7 @@
+/* css/admin.css */
+
 /* =================================================================
-   GLOBAL STYLES & CSS VARIABLES
+  GLOBAL STYLES & CSS VARIABLES
 ================================================================== */
 :root {
   --primary-color: #6366f1;
@@ -19,21 +21,26 @@
   --font-serif: "Lora", sans-serif;
   --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --transition-fast: all 0.4s ease-in-out;
+  --sidebar-width: 250px;
+  --header-height: 60px;
 }
-/* body.dark-mode {
-  /* Dark Mode Pastel & Glassmorphism Palette */
-/* --bg-main: #1a1825; Deep, soft purple-black */
-/* --bg-content: rgba(40, 36, 61, 0.6); Translucent pastel purple for glass effect */
-/* --text-primary: #e5e7eb; */
-/* --text-secondary: #9ca3af; */
-/* --border-color: rgba(139, 92, 246, 0.2); Soft purple border */
-/* } */
-/* body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    transition: var(--transition);
-} */
+
+/* Dark Mode */
+body.dark-mode {
+  --primary-color: #8b5cf6;
+  --secondary-color: #6366f1;
+  --accent-color: #06b6d4;
+  --bg-light: #1a1825;
+  --bg-soft: rgba(40, 36, 61, 0.6);
+  --bg-dark: #0a0913;
+  --text-dark: #e5e7eb;
+  --text-light: #1a1825;
+  --text-muted: #9ca3af;
+  --border-color: rgba(139, 92, 246, 0.2);
+  --skeleton-color: #33334d;
+}
+
+/* Base Styles & Transitions */
 * {
   margin: 0;
   padding: 0;
@@ -44,6 +51,7 @@
 html {
   zoom: 0.8;
 }
+
 html,
 body {
   margin: 0;
@@ -55,28 +63,35 @@ body {
   background-color: var(--bg-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--padding-normal);
 }
+
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
+
 a {
   text-decoration: none;
   color: var(--primary-color);
   transition: var(--transition-fast);
 }
+
 a:hover {
   color: var(--secondary-color);
 }
+
 ul {
   list-style: none;
 }
+
 .section--title {
   font-family: var(--font-serif);
   font-size: 2.5rem;
@@ -96,7 +111,7 @@ ul {
 }
 
 /* =================================================================
-   BUTTONS
+  BUTTONS
 ================================================================== */
 .btn {
   display: inline-block;
@@ -115,7 +130,7 @@ ul {
 }
 
 .btn--primary:hover {
-  background-color: #4f46e5; /* Darker Indigo */
+  background-color: #4f46e5;
   color: var(--text-light);
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
@@ -132,22 +147,9 @@ ul {
   border-color: var(--primary-color);
 }
 
-:root {
-  --sidebar-width: 250px;
-  --header-height: 60px;
-  --primary-color: #6366f1;
-  --secondary-color: #8b5cf6;
-  --accent-color: #06b6d4;
-  --bg-light: #ffffff;
-  --bg-soft: #f9fafb;
-  --text-dark: #1f2937;
-  --text-muted: #6b7280;
-  --border-color: #e5e7eb;
-  --border-radius: 8px;
-  --transition-fast: all 0.3s ease;
-}
-
-/* Login Page */
+/* =================================================================
+  LOGIN PAGE
+================================================================== */
 .login-body {
   background: var(--bg-soft);
   display: flex;
@@ -199,7 +201,9 @@ ul {
   width: 100%;
 }
 
-/* Dashboard Layout */
+/* =================================================================
+  DASHBOARD LAYOUT
+================================================================== */
 .dashboard-body {
   display: flex;
   min-height: 100vh;
@@ -220,6 +224,7 @@ ul {
   padding: 0 20px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  transition: background-color 0.5s ease-in-out;
 }
 
 .admin-header .logo img {
@@ -235,7 +240,8 @@ ul {
   background: white;
   border-right: 1px solid var(--border-color);
   padding: 20px 0;
-  transition: var(--transition-fast);
+  transition: width 0.3s ease-in-out, background-color 0.5s ease-in-out,
+    border-right 0.5s ease-in-out;
 }
 
 .sidebar ul {
@@ -264,6 +270,7 @@ ul {
   padding: 20px;
   flex: 1;
   background: var(--bg-soft);
+  transition: margin-left 0.3s ease-in-out, background-color 0.5s ease-in-out;
 }
 
 .page {
@@ -284,12 +291,24 @@ ul {
   }
 }
 
-/* Form Layout */
+/* =================================================================
+  FORM LAYOUT (ADD ITEMS)
+================================================================== */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
+  gap: 24px;
+  margin-top: 24px;
+  background: var(--bg-light);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
@@ -303,15 +322,37 @@ ul {
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   font-size: 1rem;
+  background-color: var(--bg-soft);
+  color: var(--text-dark);
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
 .rich-editor {
-  min-height: 150px;
+  min-height: 200px;
   border-radius: var(--border-radius);
+}
+
+.ql-toolbar.ql-snow {
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.ql-container.ql-snow {
+  border: 1px solid var(--border-color);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 .tag-input {
@@ -321,19 +362,20 @@ ul {
 .tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   margin-top: 8px;
 }
 
 .tags-container .tag {
   background: var(--primary-color);
   color: white;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .tags-container .tag .remove {
@@ -341,7 +383,15 @@ ul {
   font-weight: bold;
 }
 
-/* Table */
+/* Make the rich editor and submit button span the full grid width */
+.form-group:has(.rich-editor),
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* =================================================================
+  PRODUCT LIST TABLE
+================================================================== */
 .product-table {
   width: 100%;
   border-collapse: collapse;
@@ -350,6 +400,7 @@ ul {
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
 .product-table th,
@@ -363,6 +414,7 @@ ul {
   background: var(--bg-soft);
   font-weight: 600;
   color: var(--text-dark);
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 .product-table img {
@@ -388,7 +440,9 @@ ul {
   color: var(--primary-color);
 }
 
-/* Orders */
+/* =================================================================
+  ORDERS
+================================================================== */
 .orders-list {
   display: flex;
   flex-direction: column;
@@ -423,7 +477,9 @@ ul {
   width: 100%;
 }
 
-/* Modal */
+/* =================================================================
+  MODAL
+================================================================== */
 .modal {
   display: none;
   position: fixed;
@@ -455,7 +511,40 @@ ul {
   color: var(--text-muted);
 }
 
-/* Responsive */
+/* =================================================================
+  LOADING INDICATOR
+================================================================== */
+.loading-indicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2001;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.loading-indicator i {
+  margin-right: 10px;
+}
+
+/* =================================================================
+  RESPONSIVE DESIGN
+================================================================== */
+@media (max-width: 992px) {
+  .product-table th,
+  .product-table td {
+    padding: 8px;
+  }
+}
+
 @media (max-width: 768px) {
   .admin-header {
     padding: 0 12px;
@@ -481,27 +570,52 @@ ul {
 
   .form-grid {
     grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  /* Make table stack on smaller screens */
+  .product-table thead {
+    display: none;
+  }
+
+  .product-table,
+  .product-table tbody,
+  .product-table tr,
+  .product-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .product-table tr {
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .product-table td {
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .product-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-dark);
   }
 }
 
-/* Loading Indicator */
-.loading-indicator {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px 40px;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-sm);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2001;
-  font-size: 1.2rem;
-  color: var(--primary-color);
-}
-
-.loading-indicator i {
-  margin-right: 10px;
+@media (max-width: 480px) {
+  .product-table td {
+    font-size: 0.85rem;
+  }
 }
