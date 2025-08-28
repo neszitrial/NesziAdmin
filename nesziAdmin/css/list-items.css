@@ -1,0 +1,198 @@
+/* css/list-items.css */
+
+/*
+   The @import rule must be at the top of the file.
+   It imports the global styles from admin.css.
+*/
+@import url("admin.css");
+
+/* =================================================================
+ HEADER & ADD PRODUCT BUTTON
+================================================================== */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header-container h2 {
+  margin-bottom: 0;
+}
+
+/* =================================================================
+ PRODUCT GRID & CARDS
+================================================================== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.product-card {
+  background: var(--bg-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.product-details {
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.product-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: var(--text-dark);
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.card-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.product-card:hover .card-actions {
+  opacity: 1;
+}
+
+.action-btn-edit,
+.action-btn-delete {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s;
+}
+
+.action-btn-edit:hover {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.action-btn-delete:hover {
+  background-color: #ef4444; /* A red color for delete */
+  color: var(--text-light);
+}
+
+.action-btn-edit i {
+  color: var(--primary-color);
+}
+
+.action-btn-delete i {
+  color: #ef4444;
+}
+
+.action-btn-edit:hover i,
+.action-btn-delete:hover i {
+  color: var(--text-light);
+}
+
+/* css/list-items.css */
+
+/* =================================================================
+  SKELETON LOADER STYLES
+================================================================== */
+.skeleton-card {
+  background: var(--bg-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  /* Use the same size as product cards for a smooth transition */
+  height: 280px;
+}
+
+body.dark-mode .skeleton-card {
+  background: var(--bg-dark);
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  background-color: var(--skeleton-color);
+  animation: pulse-bg 1s infinite;
+}
+
+.skeleton-details {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-line {
+  height: 12px;
+  background-color: var(--skeleton-color);
+  border-radius: var(--border-radius);
+  animation: pulse-bg 1s infinite;
+}
+
+.skeleton-name {
+  width: 80%;
+}
+
+.skeleton-price {
+  width: 60%;
+}
+
+@keyframes pulse-bg {
+  0% {
+    background-color: var(--skeleton-color);
+  }
+  50% {
+    background-color: var(--skeleton-color-light);
+  }
+  100% {
+    background-color: var(--skeleton-color);
+  }
+}
+
+/* Hide the main product grid initially and show the skeleton */
+.product-grid {
+  display: grid;
+  /* ... (rest of the grid styles) ... */
+}
+
+/* Hide the skeleton when the product list is active */
+#productListContainer.loaded .skeleton-card {
+  display: none;
+}

@@ -1,7 +1,10 @@
 /* css/admin.css */
+@import url(list-items.css);
+@import url(add-items.css);
+@import url(popup.css);
 
 /* =================================================================
-  GLOBAL STYLES & CSS VARIABLES
+ GLOBAL STYLES & CSS VARIABLES
 ================================================================== */
 :root {
   --primary-color: #6366f1;
@@ -23,6 +26,8 @@
   --transition-fast: all 0.4s ease-in-out;
   --sidebar-width: 250px;
   --header-height: 60px;
+  --skeleton-color: #e0e0e0;
+  --skeleton-color-light: #f5f5f5;
 }
 
 /* Dark Mode */
@@ -38,6 +43,8 @@ body.dark-mode {
   --text-muted: #9ca3af;
   --border-color: rgba(139, 92, 246, 0.2);
   --skeleton-color: #33334d;
+  /* --skeleton-color: #333333; */
+  --skeleton-color-light: #444444;
 }
 
 /* Base Styles & Transitions */
@@ -111,7 +118,7 @@ ul {
 }
 
 /* =================================================================
-  BUTTONS
+ BUTTONS
 ================================================================== */
 .btn {
   display: inline-block;
@@ -148,7 +155,7 @@ ul {
 }
 
 /* =================================================================
-  LOGIN PAGE
+ LOGIN PAGE
 ================================================================== */
 .login-body {
   background: var(--bg-soft);
@@ -202,7 +209,7 @@ ul {
 }
 
 /* =================================================================
-  DASHBOARD LAYOUT
+ DASHBOARD LAYOUT
 ================================================================== */
 .dashboard-body {
   display: flex;
@@ -292,7 +299,7 @@ ul {
 }
 
 /* =================================================================
-  FORM LAYOUT (ADD ITEMS)
+ FORM LAYOUT (ADD ITEMS)
 ================================================================== */
 .form-grid {
   display: grid;
@@ -390,58 +397,7 @@ ul {
 }
 
 /* =================================================================
-  PRODUCT LIST TABLE
-================================================================== */
-.product-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-  background: white;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-}
-
-.product-table th,
-.product-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.product-table th {
-  background: var(--bg-soft);
-  font-weight: 600;
-  color: var(--text-dark);
-  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
-}
-
-.product-table img {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-/* Action Buttons */
-.action-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  margin: 0 4px;
-  font-size: 1rem;
-  color: var(--text-muted);
-  transition: color 0.2s;
-}
-
-.action-btn:hover {
-  color: var(--primary-color);
-}
-
-/* =================================================================
-  ORDERS
+ ORDERS
 ================================================================== */
 .orders-list {
   display: flex;
@@ -478,7 +434,7 @@ ul {
 }
 
 /* =================================================================
-  MODAL
+ MODAL
 ================================================================== */
 .modal {
   display: none;
@@ -512,7 +468,7 @@ ul {
 }
 
 /* =================================================================
-  LOADING INDICATOR
+ LOADING INDICATOR
 ================================================================== */
 .loading-indicator {
   position: fixed;
@@ -535,87 +491,25 @@ ul {
   margin-right: 10px;
 }
 
-/* =================================================================
-  RESPONSIVE DESIGN
-================================================================== */
-@media (max-width: 992px) {
-  .product-table th,
-  .product-table td {
-    padding: 8px;
-  }
+/* css/admin.css */
+
+/* ... existing styles ... */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-@media (max-width: 768px) {
-  .admin-header {
-    padding: 0 12px;
-  }
-
-  .sidebar {
-    width: 70px;
-  }
-
-  .sidebar a span {
-    display: none;
-  }
-
-  .main-content {
-    margin-left: 70px;
-  }
-
-  .order-card {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    font-size: 0.9rem;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-    padding: 20px;
-    gap: 16px;
-  }
-
-  /* Make table stack on smaller screens */
-  .product-table thead {
-    display: none;
-  }
-
-  .product-table,
-  .product-table tbody,
-  .product-table tr,
-  .product-table td {
-    display: block;
-    width: 100%;
-  }
-
-  .product-table tr {
-    margin-bottom: 16px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .product-table td {
-    text-align: right;
-    border-bottom: 1px solid var(--border-color);
-    position: relative;
-    padding-left: 50%;
-  }
-
-  .product-table td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 10px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    text-align: left;
-    font-weight: 600;
-    color: var(--text-dark);
-  }
+.btn--icon {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
-@media (max-width: 480px) {
-  .product-table td {
-    font-size: 0.85rem;
-  }
+.btn--icon:hover {
+  color: var(--primary-color);
 }

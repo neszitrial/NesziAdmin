@@ -1,0 +1,132 @@
+/* popup.css */
+
+/* Pop-up styles */
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+
+  /* Use global CSS variables */
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--border-radius);
+
+  width: 90vw;
+  max-width: 400px;
+  cursor: auto;
+  padding: var(--padding-normal);
+  transition: var(--transition-fast);
+}
+
+/* Dark mode specific styles for the popup - 'Acrylic' effect */
+body.dark-mode .popup-container {
+  background-color: #1c192d; /* A less transparent dark purple for better readability */
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: grab;
+}
+
+.popup-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+}
+
+body.dark-mode .popup-title {
+  color: var(--text-dark);
+}
+
+.close-popup-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.3s ease-in-out;
+}
+
+.close-popup-btn:hover {
+  color: var(--primary-color);
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.popup-icon {
+  font-size: 48px; /* Fixed size for consistency across devices */
+  margin-bottom: 1rem;
+}
+
+/* Icon color adjustments */
+.popup-icon {
+  color: var(--text-muted); /* Grey in light mode */
+}
+body.dark-mode .popup-icon {
+  color: #c9b1ff; /* Pastel purple in dark mode */
+}
+
+.popup-message {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+}
+
+body.dark-mode .popup-message {
+  color: var(--text-muted);
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: center;
+  /* gap: var(--gutter-normal); */
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Button styles for the popup */
+.popup-action-btn {
+  /* Smaller padding for more compact buttons */
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border: 1px solid transparent;
+  display: inline-block; /* Ensure they stay in a line */
+  font-size: 0.9rem; /* Slightly smaller font size */
+}
+
+.popup-action-btn.primary-btn {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.popup-action-btn.secondary-btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 480px) {
+  .popup-container {
+    width: 95vw;
+    padding: 1rem;
+  }
+}

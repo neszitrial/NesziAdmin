@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product List | Pawa Admin</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body class="dashboard-body">
+    <admin-header></admin-header>
+
+    <main class="main-content">
+      <div id="loadingIndicator" class="loading-indicator">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+      </div>
+      <section id="list-items" class="page active">
+        <div class="header-container">
+          <h2>Product List</h2>
+          <a href="add-items.html" class="btn btn--primary">
+            Add Product <i class="fas fa-plus"></i>
+          </a>
+        </div>
+        <div id="productListContainer" class="product-grid">
+          <div class="skeleton-card">
+            <div class="skeleton-image"></div>
+            <div class="skeleton-details">
+              <div class="skeleton-line skeleton-name"></div>
+              <div class="skeleton-line skeleton-price"></div>
+            </div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-image"></div>
+            <div class="skeleton-details">
+              <div class="skeleton-line skeleton-name"></div>
+              <div class="skeleton-line skeleton-price"></div>
+            </div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-image"></div>
+            <div class="skeleton-details">
+              <div class="skeleton-line skeleton-name"></div>
+              <div class="skeleton-line skeleton-price"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="editModal" class="modal">
+        <div class="modal-content">
+          <span class="close-edit-modal">&times;</span>
+          <h3>Edit Product</h3>
+          <form id="editProductForm" class="form-grid">
+            <input type="hidden" id="editProductId" />
+            <div class="form-group">
+              <label for="editProductName">Product Name</label>
+              <input type="text" id="editProductName" required />
+            </div>
+            <div class="form-group">
+              <label for="editProductDescription">Description</label>
+              <textarea id="editProductDescription" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="editProductPrice">Price (KES)</label>
+              <input type="number" id="editProductPrice" step="0.01" required />
+            </div>
+            <div class="form-group">
+              <label for="editProductStock">Stock Quantity</label>
+              <input type="number" id="editProductStock" required />
+            </div>
+            <div class="form-group full-width">
+              <button type="submit" class="btn btn--primary">
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="addInventoryModal" class="modal">
+        <div class="modal-content">
+          <span class="close-inventory-modal">&times;</span>
+          <h3>Add Inventory</h3>
+          <form id="addInventoryForm" class="form-grid">
+            <input type="hidden" id="inventoryProductId" />
+            <div class="form-group">
+              <label for="inventoryQuantity">Quantity</label>
+              <input
+                type="number"
+                id="inventoryQuantity"
+                value="1"
+                min="1"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div id="scanner-container" class="scanner-container"></div>
+            </div>
+            <div id="dynamic-inputs-container"></div>
+            <div class="form-group full-width">
+              <button type="submit" class="btn btn--primary">
+                Add to Inventory
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <admin-popup></admin-popup>
+
+    <script type="module" src="../js-components/admin-header.js" defer></script>
+    <script type="module" src="../js-components/admin-popup.js" defer></script>
+    <script type="module" src="../js/list-items.js"></script>
+  </body>
+</html>

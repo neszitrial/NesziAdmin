@@ -115,3 +115,37 @@
 .form-group:has(.rich-editor) {
   grid-column: 1 / -1;
 }
+
+/* CSS for the skeleton loader */
+.skeleton-loader {
+  /* You can customize this to match your form's layout */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 30px;
+  background: var(--bg-light);
+  border-radius: var(--border-radius);
+}
+
+.skeleton-box {
+  background-color: #e0e0e0; /* Gray color for the loading boxes */
+  border-radius: 8px;
+  height: 40px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-box.full-width {
+  grid-column: 1 / -1;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}

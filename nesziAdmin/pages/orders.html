@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders | Pawa Admin</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body class="dashboard-body">
+    <admin-header></admin-header>
+
+    <main class="main-content">
+      <div id="loadingIndicator" class="loading-indicator">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+      </div>
+      <section id="orders" class="page active">
+        <h2>Orders</h2>
+        <div id="ordersList" class="orders-list"></div>
+      </section>
+    </main>
+
+    <admin-popup></admin-popup>
+
+    <script type="module" src="../js-components/admin-header.js" defer></script>
+    <script type="module" src="../js-components/admin-popup.js" defer></script>
+    <script type="module" src="../js/orders.js" defer></script>
+  </body>
+</html>
