@@ -5,7 +5,7 @@ import { showToast } from "./utils/alert.js";
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("loginForm");
   const loginBtn = document.querySelector("#loginForm button[type='submit']");
-  const API_BASE_URL = "http://localhost:5000/api/admin";
+  const API_BASE_URL = "https://neszi-backend.onrender.com/api/admin";
 
   const showLoading = (isLoading) => {
     if (isLoading) {

@@ -320,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("inventory_items", JSON.stringify(inventoryItems));
 
         const response = await makeAuthenticatedRequest(
-          "http://localhost:5000/api/admin/products",
+          "https://neszi-backend.onrender.com/api/admin/products",
           "POST",
           formData,
           true

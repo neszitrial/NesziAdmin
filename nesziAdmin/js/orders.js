@@ -6,7 +6,7 @@ const ordersList = document.getElementById("ordersList");
 
 export async function fetchOrders() {
   if (!ordersList) return;
-  const API_BASE_URL = "http://localhost:5000/api/admin";
+  const API_BASE_URL = "https://neszi-backend.onrender.com/api/admin";
   const orders = await makeAuthenticatedRequest(`${API_BASE_URL}/orders`);
   if (!orders) return;
 

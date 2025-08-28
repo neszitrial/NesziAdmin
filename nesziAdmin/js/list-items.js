@@ -137,7 +137,7 @@ export async function fetchProducts() {
   `;
 
   try {
-    const API_BASE_URL = "http://localhost:5000/api/admin";
+    const API_BASE_URL = "https://neszi-backend.onrender.com/api/admin";
     const products = await makeAuthenticatedRequest(`${API_BASE_URL}/products`);
 
     productListContainer.innerHTML = ""; // Clear the skeletons
@@ -226,7 +226,7 @@ function setupEventListeners() {
 
       if (userConfirmed) {
         try {
-          const API_BASE_URL = "http://localhost:5000/api/admin";
+          const API_BASE_URL = "https://neszi-backend.onrender.com/api/admin";
           const response = await makeAuthenticatedRequest(
             `${API_BASE_URL}/products/${productId}`,
             "DELETE"
@@ -336,7 +336,7 @@ function setupEventListeners() {
       }
 
       try {
-        const API_BASE_URL = "http://localhost:5000/api/admin";
+        const API_BASE_URL = "https://neszi-backend.onrender.com/api/admin";
         const response = await makeAuthenticatedRequest(
           `${API_BASE_URL}/inventory/batch`,
           "POST",
@@ -381,7 +381,7 @@ function setupEventListeners() {
       };
 
       try {
-        const API_BASE_URL = "http://localhost:5000/api/admin";
+        const API_BASE_URL = "https://neszi-backend.onrender.com/api/admin";
         const response = await makeAuthenticatedRequest(
           `${API_BASE_URL}/products/${productId}`,
           "PUT",

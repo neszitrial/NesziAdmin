@@ -1,6 +1,6 @@
 // js/api.js
 
-const API_BASE_URL = "http://localhost:5000/api/admin";
+const API_BASE_URL = "https://neszi-backend.onrender.com/api/admin";
 const loadingIndicator = document.getElementById("loadingIndicator");
 
 export function showLoading() {
