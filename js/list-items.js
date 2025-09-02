@@ -2,7 +2,7 @@
 
 import { makeAuthenticatedRequest } from "./api.js";
 import { showToast } from "./utils/alert.js";
-import { Html5Qrcode } from "html5-qrcode";
+// import { Html5Qrcode } from "html5-qrcode";
 
 // Global variables for DOM elements, initialized inside DOMContentLoaded
 let productListContainer;
